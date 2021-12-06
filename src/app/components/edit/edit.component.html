@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="mb-4">Επεξεργασία ομάδας</h2>
+
+            <div class="mb-3">
+                <label for="form_name" class="form-label">Όνομα ομάδας</label>
+                <input [(ngModel)]="team.name" type="text" class="form-control" id="form_name" placeholder="Όνομα ομάδας">
+            </div>
+            <div class="mb-3">
+                <label for="form_logo" class="form-label">Λογότυπο</label>
+                <input [(ngModel)]="team.logo" type="url" class="form-control" id="form_logo" placeholder="http://...">
+            </div>
+            <div class="mb-3">
+                <label for="form_points" class="form-label">Πόντοι</label>
+                <input [(ngModel)]="team.points" type="number" class="form-control" id="form_points" placeholder="Πόντοι">
+            </div>
+            <div class="text-center">
+                <button (click)="updateTeam()" class="btn btn-success">
+                    Αποθήκευση
+                </button>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <h2 class="mb-4">Preview</h2>
+
+            <div class="text-center">
+                <img [src]="team.logo" height="150"/>
+                <div class="display-1">
+                    {{ team.name }}
+                </div>
+                <div class="display-2 text-danger">
+                    {{ team.points }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

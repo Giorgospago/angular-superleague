@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            <button (click)="fetchTeams()" type="button" class="btn btn-primary">
+                <i class="las la-redo-alt"></i> Refresh
+            </button>
+
+            <table class="table my-5">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Team</th>
+                        <th scope="col">Pts</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let team of teams;let i = index">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>
+                            <a [routerLink]="'team/' + team._id">
+                                <img [src]="team.logo" height="25" />
+                                <span class="ms-3">{{ team.name }}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="d-flex">
+                                <div class="flex-grow-1">{{ team.points }}</div>
+                                <div>
+                                    <button [routerLink]="'/edit/' + team._id" class="btn btn-sm btn-warning me-2">
+                                        <i class="las la-pencil-alt"></i>
+                                    </button>
+                                    <button (click)="deleteTeam(team._id)" class="btn btn-sm btn-danger">
+                                        <i class="las la-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
