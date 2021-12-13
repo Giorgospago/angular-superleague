@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ListComponent implements OnInit {
   
+  public total: number = 0;
   public teams: any = [];
 
   constructor(public http: HttpClient) {
@@ -20,11 +21,16 @@ export class ListComponent implements OnInit {
   }
 
   public fetchTeams() {
+    this.total = 0;
     this.http
     .get(environment.baseUrl + "/superleague")
     .subscribe((response: any) => {
       if(response.success) {
         this.teams = response.data;
+
+        for (let team of this.teams) {
+          this.total += team.points;
+        }
       }
     });
   }
