@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
 
   public fetchTeams() {
     this.http
-    .get("http://localhost:3000/superleague")
+    .get("https://api.deltaleague.cf/superleague")
     .subscribe((response: any) => {
       if(response.success) {
         this.teams = response.data;
@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
 
   public deleteTeam(id: string) {
     this.http
-      .delete("http://localhost:3000/superleague/" + id)
+      .delete("https://api.deltaleague.cf/superleague/" + id)
       .subscribe(() => {
         this.fetchTeams();
       });

@@ -33,7 +33,7 @@ export class EditComponent implements OnInit {
 
   public fetchTeam(id: string) {
     this.http
-      .get("http://localhost:3000/superleague/" + id)
+      .get("https://api.deltaleague.cf/superleague/" + id)
       .subscribe((response: any) => {
         if (response.success) {
             this.team = response.data;
@@ -43,7 +43,7 @@ export class EditComponent implements OnInit {
 
   public updateTeam() {
     this.http
-      .put("http://localhost:3000/superleague/" + this.teamId, this.team)
+      .put("https://api.deltaleague.cf/superleague/" + this.teamId, this.team)
       .subscribe(() => {
         this.router.navigate(["/"]);
       });

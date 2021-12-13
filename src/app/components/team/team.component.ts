@@ -24,7 +24,7 @@ export class TeamComponent implements OnInit {
 
   public fetchTeam(id: string) {
     this.http
-      .get("http://localhost:3000/superleague/" + id)
+      .get("https://api.deltaleague.cf/superleague/" + id)
       .subscribe((response: any) => {
         if (response.success) {
             this.team = response.data;

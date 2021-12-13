@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
 
   public createTeam() {
     this.http
-      .post("http://localhost:3000/create", this.team)
+      .post("https://api.deltaleague.cf/create", this.team)
       .subscribe(() => {
           this.router.navigate(["/"]);
       });
