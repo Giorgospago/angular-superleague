@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create',
@@ -25,7 +26,7 @@ export class CreateComponent implements OnInit {
 
   public createTeam() {
     this.http
-      .post("https://api.deltaleague.cf/create", this.team)
+      .post(environment.baseUrl + "/create", this.team)
       .subscribe(() => {
           this.router.navigate(["/"]);
       });

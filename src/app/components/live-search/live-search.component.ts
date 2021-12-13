@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-live-search',
@@ -35,7 +36,7 @@ export class LiveSearchComponent implements OnInit {
   public fetchSearchResults() {
     this
       .http
-      .get("http://localhost:3000/search", {
+      .get(environment.baseUrl + "/search", {
         params: {
           key: this.search
         }

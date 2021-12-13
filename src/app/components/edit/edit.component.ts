@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit',
@@ -33,7 +34,7 @@ export class EditComponent implements OnInit {
 
   public fetchTeam(id: string) {
     this.http
-      .get("https://api.deltaleague.cf/superleague/" + id)
+      .get(environment.baseUrl + "/superleague/" + id)
       .subscribe((response: any) => {
         if (response.success) {
             this.team = response.data;
@@ -43,7 +44,7 @@ export class EditComponent implements OnInit {
 
   public updateTeam() {
     this.http
-      .put("https://api.deltaleague.cf/superleague/" + this.teamId, this.team)
+      .put(environment.baseUrl + "/superleague/" + this.teamId, this.team)
       .subscribe(() => {
         this.router.navigate(["/"]);
       });

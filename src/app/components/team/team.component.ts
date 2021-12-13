@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-team',
@@ -24,7 +25,7 @@ export class TeamComponent implements OnInit {
 
   public fetchTeam(id: string) {
     this.http
-      .get("https://api.deltaleague.cf/superleague/" + id)
+      .get(environment.baseUrl + "/superleague/" + id)
       .subscribe((response: any) => {
         if (response.success) {
             this.team = response.data;

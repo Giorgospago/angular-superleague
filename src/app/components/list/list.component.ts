@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list',
@@ -20,7 +21,7 @@ export class ListComponent implements OnInit {
 
   public fetchTeams() {
     this.http
-    .get("https://api.deltaleague.cf/superleague")
+    .get(environment.baseUrl + "/superleague")
     .subscribe((response: any) => {
       if(response.success) {
         this.teams = response.data;
@@ -30,7 +31,7 @@ export class ListComponent implements OnInit {
 
   public deleteTeam(id: string) {
     this.http
-      .delete("https://api.deltaleague.cf/superleague/" + id)
+      .delete(environment.baseUrl + "/superleague/" + id)
       .subscribe(() => {
         this.fetchTeams();
       });
