@@ -9,11 +9,23 @@
             </div>
             <div class="mb-3">
                 <label for="form_logo" class="form-label">Λογότυπο</label>
-                <input [(ngModel)]="team.logo" type="url" class="form-control" id="form_logo" placeholder="http://...">
+                <input (change)="handleFile($event)" type="file" class="form-control" id="form_logo">
             </div>
             <div class="mb-3">
                 <label for="form_points" class="form-label">Πόντοι</label>
                 <input [(ngModel)]="team.points" type="number" class="form-control" id="form_points" placeholder="Πόντοι">
+            </div>
+            <div class="mb-3">
+                <div class="text-end">
+                    {{ percentage }}%
+                </div>
+                <div class="progress">
+                    <div 
+                        class="progress-bar progress-bar-striped progress-bar-animated" 
+                        role="progressbar" 
+                        [style.width.%]="percentage"
+                    ></div>
+                </div>
             </div>
             <div class="text-center">
                 <button (click)="createTeam()" class="btn btn-success">

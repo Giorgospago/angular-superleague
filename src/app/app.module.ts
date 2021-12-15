@@ -10,6 +10,7 @@ import { TeamComponent } from './components/team/team.component';
 import { FormsModule } from '@angular/forms';
 import { EditComponent } from './components/edit/edit.component';
 import { LiveSearchComponent } from './components/live-search/live-search.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const routes = [
   {path: "", component: ListComponent},
@@ -32,6 +33,7 @@ const routes = [
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    NgxDropzoneModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
