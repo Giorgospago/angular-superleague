@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { ConfigService } from 'src/app/services/config.service';
+import { TeamService } from 'src/app/services/http/team.service';
 
 @Component({
   selector: 'app-list',
@@ -12,18 +12,24 @@ export class ListComponent implements OnInit {
   public total: number = 0;
   public teams: any = [];
 
-  constructor(public http: HttpClient) {
-  }
+  constructor(
+    public configService: ConfigService,
+    public teamService: TeamService
+  ) {}
 
   ngOnInit() {
-    console.log("ngOnInit");
     this.fetchTeams();
+
+    this.configService.counter
+      .subscribe((data) => {
+          console.log(data);
+      });
   }
 
   public fetchTeams() {
     this.total = 0;
-    this.http
-    .get(environment.baseUrl + "/superleague")
+
+    this.teamService.fetchTeams()
     .subscribe((response: any) => {
       if(response.success) {
         this.teams = response.data;
@@ -36,8 +42,7 @@ export class ListComponent implements OnInit {
   }
 
   public deleteTeam(id: string) {
-    this.http
-      .delete(environment.baseUrl + "/superleague/" + id)
+    this.teamService.deleteTeam(id)
       .subscribe(() => {
         this.fetchTeams();
       });

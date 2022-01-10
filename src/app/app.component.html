@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: {{ configService.mainColor }};">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img src="assets/images/logo.png" height="24" class="d-inline-block align-text-top">
@@ -19,9 +19,20 @@
                 <a routerLink="live-search" routerLinkActive="active" class="nav-link">
                     <i class="las la-search"></i> Live search
                 </a>
+                <button 
+                    class="btn btn-primary" 
+                    (click)="setRandomNumber()"
+                >Click me</button>
             </div>
         </div>
     </div>
 </nav>
+
+<!-- <agm-map
+    [latitude]="lat"
+    [longitude]="lng"
+>
+    <agm-marker draggable="true" [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map> -->
 
 <router-outlet></router-outlet>

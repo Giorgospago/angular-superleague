@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { EditComponent } from './components/edit/edit.component';
 import { LiveSearchComponent } from './components/live-search/live-search.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { AgmCoreModule } from '@agm/core';
 
 const routes = [
   {path: "", component: ListComponent},
@@ -34,7 +35,10 @@ const routes = [
     BrowserModule,
     HttpClientModule,
     NgxDropzoneModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyC0lYUb2GPxerQxVJ_3-oE-JulqAeoKXw0"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

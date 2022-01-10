@@ -1,16 +1,16 @@
-import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/services/config.service';
+import { TeamService } from 'src/app/services/http/team.service';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy {
 
-  public percentage: number = 0;
+  public counterSub: any = null;
+
   public file: any = null;
   public team = {
     logo: "",
@@ -19,42 +19,37 @@ export class CreateComponent implements OnInit {
   };
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    public teamService: TeamService,
+    public configService: ConfigService
   ) { }
 
   ngOnInit(): void {
+
+    this.counterSub = this.configService.counter
+      .subscribe((data) => {
+        console.log("create component", data);
+      });
+
   }
 
   public createTeam() {
-    const formData = new FormData();
-    formData.append('logo', this.file);
-    formData.append('name', this.team.name);
-    formData.append('points', `${this.team.points}`);
-
-    const options = {
-      reportProgress: true,
+    const data = {
+      logo: this.file,
+      name: this.team.name,
+      points: `${this.team.points}`
     };
 
-    const req = new HttpRequest(
-      'POST', 
-      environment.baseUrl + "/create", 
-      formData, 
-      options
-    );
-    this.http
-      .request(req)
-      .subscribe((event: any) => {
-        if (event.type == HttpEventType.UploadProgress) {
-          this.percentage = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          // this.router.navigate(["/"])
-        }
-      });
+    this.teamService.createTeam(data);
   }
 
   public handleFile(event: any) {
     this.file = event.target.files[0];
+  }
+
+
+  ngOnDestroy() {
+    console.log("leaving create component...");
+    this.counterSub.unsubscribe();
   }
 
 }
