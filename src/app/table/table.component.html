@@ -10,8 +10,8 @@
                         class="img-thumbnail rounded-circle"
                         alt="User"
                     />
-                    <div class="flex-grow-1 ms-3">{{ user.first_name }}</div>
-                    <div class="fw-bold">{{ user.dob | daysAgo }}</div>
+                    <div class="flex-grow-1 ms-3" [innerHTML]="user.first_name | colorfulText"></div>
+                    <div class="fw-bold" [innerHTML]="user.dob | daysAgo | colorfulText"></div>
                 </li>
             </ul>
         </div>
