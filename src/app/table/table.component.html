@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <ul class="list-group">
+                <li *ngFor="let user of users" 
+                    class="list-group-item d-flex align-items-center"
+                >
+                    <img 
+                        [src]="'https://picsum.photos/30?v=' + user.id"
+                        class="img-thumbnail rounded-circle"
+                        alt="User"
+                    />
+                    <div class="flex-grow-1 ms-3">{{ user.first_name }}</div>
+                    <div class="fw-bold">{{ user.dob | daysAgo }}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

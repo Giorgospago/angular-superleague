@@ -10,11 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 const routes = [
-  {path: "", component: ListComponent},
-  {path: "create", component: CreateComponent},
-  {path: "team/:teamId", component: TeamComponent},
-  {path: "edit/:teamId", component: EditComponent},
-  {path: "live-search", component: LiveSearchComponent},
+  { path: "", component: ListComponent },
+  { path: "create", component: CreateComponent },
+  { path: "team/:teamId", component: TeamComponent },
+  { path: "edit/:teamId", component: EditComponent },
+  { path: "live-search", component: LiveSearchComponent },
+  { 
+    path: 'table', 
+    loadChildren: () => import('../table/table.module').then(m => m.TableModule)
+  },
 ];
 
 @NgModule({
